@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>朋友圈</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="js/crop/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/Handlebars.js"></script>
+    <script>
+        var hideCommentPop = function(){
+            $('.FnBtn.active').stop().hide('normal').removeClass('active');
+            $('.commentPop').hide();
+            $('.commentPop input').blur();
+        };
+        $(function(){
+            $('.fnShowBtn').on('touchend',function(e){
+                e.stopPropagation();
+                $(this).parent().find('.FnBtn').stop().show('normal').addClass('active');
+            });
+            $('.main').on('touchend',function(){
+                hideCommentPop();
+            });
+            $('.pinglunBtn').on('touchend', function(e){
+                $('.FnBtn.active').stop().hide('normal').removeClass('active');
+                e.stopPropagation();
+                $('.commentPop').show();
+                $('.commentPop input').focus();
+            });
+            $('.commentPop').on('touchstart', function(e){
+                e.stopPropagation();
+            });
+            $('.commentPop').on('touchend', function(e){
+                e.stopPropagation();
+            });
+            $('.commentPop').on('touchmove', function(e){
+                e.stopPropagation();
+            });
+        });
+    </script>
+    <style>
+        .inn div a {
+            font-size: 0.9rem;
+            color: #53679c;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="detail myself">
+        <div class="popularize">
+            <a href="javascript:;" class="">推广 <i class="icon downIcn"></i></a>
+        </div>
+        <div class="clearfix">
+            <div class="fl userAvatar">
+                <img class="user-headimgurl" alt=""/>
+            </div>
+            <div class="fl inn">
+                <h2><a class="user-nickname" href="javascript:;">xxxx</a></h2>
+                <div>
+                    <div class="user-content"></div>
+                    朋友圈打广告，底气十足才敢造
+                    <br/>
+                    <a href="javascript:;">查看详情 <i class="icon linkIcn"></i> </a> <a href="pop.html"> 我也要上朋友圈广告 <i class="icon moreIcn gifIcn"></i></a>
+                    <br/>
+                    <img class="innImg user-picurl" alt="" width="104" />
+                </div>
+                <div class="clearfix">
+                    <div class="fl">
+                        <span class="txt_gray">1小时前</span>
+                    </div>
+                    <div class="fr Fn">
+                        <a href="javascript:;" class="fnShowBtn"><i class="icon FnIcon"></i></a>
+                        <span class="FnBtn">
+                            <a href="javascript:;" class="btn-zan"><i class="icon zanIcn"></i> 赞</a>|<a href="javascript:;" class="btn-pinglun pinglunBtn"><i class="icon pinglunIcn"></i> 评论</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="commentList">
+                    <em>▲</em>
+                    <div class="favList">
+                        <div>
+                            <i class="icon favIcn"></i>
+                        </div>
+                        <div class="favUser">
+                            <a href="javascript:;">Woody</a> ,
+                            <a href="javascript:;">马佳佳</a> ,
+                            <a href="javascript:;">Winny</a> ,
+                            <a href="javascript:;">杨澜</a> ,
+                            <a href="javascript:;">范冰冰</a> ,
+                            <a href="javascript:;">GOFY</a> ,
+                            <a href="javascript:;">TYLAER</a> ,
+                            <a href="javascript:;">MARK</a> ,<a href="javascript:;">阳阳</a>
+                        </div>
+                    </div>
+                    <div class="commentWrap">
+                        <ul>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="commentPop clearfix">
+    <input type="text" class="commentIpt fl" placeholder="评论"/>
+    <button class="fr btn-submit">确定</button>
+</div>
+<script script id="detailTpl" type="text/x-handlebars-template">
+    <div class="detail {{class}}">
+        <div class="popularize">
+            <a href="javascript:;" class="">推广 <i class="icon downIcn"></i></a>
+        </div>
+        <div class="clearfix">
+            <div class="fl userAvatar">
+                <img class="user-headimgurl" src="{{users.headimgurl}}" alt=""/>
+            </div>
+            <div class="fl inn">
+                <h2><a class="user-nickname" href="javascript:;"></a></h2>
+                <div>
+                    <div class="user-content">
+                        {{users.content}}
+                    </div>
+                    朋友圈打广告，底气十足才敢造
+                    <br/>
+                    <a href="javascript:;">查看详情 <i class="icon linkIcn"></i> </a> <a href="pop.html"> 我也要上朋友圈广告 <i class="icon moreIcn gifIcn"></i></a>
+                    <br/>
+                    <img class="innImg user-picurl" alt="" width="104" />
+                </div>
+                <div class="clearfix">
+                    <div class="fl">
+                        <span class="txt_gray">一天前</span>
+                    </div>
+                    <div class="fr Fn">
+                        <a href="javascript:;" class="fnShowBtn"><i class="icon FnIcon"></i></a>
+                        <span class="FnBtn">
+                            <a href="javascript:;" class="btn-zan"><i class="icon zanIcn"></i> 赞</a>|<a href="javascript:;" class="btn-pinglun pinglunBtn"><i class="icon pinglunIcn"></i> 评论</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="commentList">
+                    <em>▲</em>
+                    <div class="favList">
+                        <div>
+                            <i class="icon favIcn"></i>
+                        </div>
+                        <div class="favUser">
+                        </div>
+                    </div>
+                    <div class="commentWrap">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/javascript">
+
+    $(function(){
+        $(".btn-submit").on("touchstart",function(){
+            var _comment = $(".commentIpt").val();
+            if(_comment === ""){
+                alert("请输入留言！");
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: 'api/user.php?act=comment',
+                data:{
+                    uid: UID,
+                    content: _comment
+                },
+                dataType: "json",
+                success: function(data){
+                    if(data.code === 1){
+                        hideCommentPop();
+                        $(".commentWrap > ul").append('<li><span><a href="javascript:;">'+nickname+'</a>:</span><span>'+_comment+'</span></li>');
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            });
+        });
+        $(".btn-zan").on("touchstart",function(){
+            $.ajax({
+                type: "POST",
+                url: 'api/user.php?act=praise',
+                data:{
+                    uid: UID
+                },
+                dataType: "json",
+                success: function(data){
+                    if(data.code === 1){
+                        $(".favUser").append(',<a href="javascript:;">'+nickname+'</a>');
+                    }else{
+                        alert(data.msg);
+                    }
+                }
+            });
+        });
+        var createFav = function(datas){
+            var arr = [];
+            $.each(datas,function(i,n){
+                arr.push('<a href="javascript:;">'+n.nickname+'</a>')
+            });
+            return arr.join(",");
+        };
+        var createContent = function(datas){
+            var arr = [];
+            $.each(datas,function(i,n){
+                arr.push('<li><span><a href="javascript:;">'+ n.nickname+'</a>:</span><span>'+ n.content+'</span></li>')
+            });
+            return arr.join("");
+        };
+        $(".myself .user-headimgurl").attr("src",falseDatas.star[commentRand3].headimgurl)
+        $(".myself .user-content").html(falseComments[commentRand3]);
+        $(".myself .user-nickname").html(falseDatas.star[commentRand3].nickname);
+        $(".myself .favUser").html( createFav( getArrayItems(falseDatas.star,3).concat(getArrayItems(falseDatas.friend,3)) ));
+        $(".myself .commentWrap > ul").html( createContent(getArrayItems(falseDatas.star,5).concat(getArrayItems(falseDatas.friend,10))));
+
+        var template = Handlebars.compile($("#detailTpl").html());
+        $(".main").append(template({
+            users: falseDatas.star[weixinRand],
+            class: "starWeixin"
+        }));
+        $(".starWeixin .user-content").html(falseComments[commentRand1]);
+        $(".starWeixin .user-nickname").html(falseDatas.star[weixinRand].nickname);
+        $(".starWeixin .favUser").html( createFav( getArrayItems(falseDatas.star,5) ));
+        $(".starWeixin .commentWrap > ul").html( createContent(getArrayItems(falseDatas.star,5).concat(getArrayItems(falseDatas.friend,10))));
+
+        $(".main").append(template({
+            users: falseDatas.friend[weixinRand],
+            class: "friendWeixin"
+        }));
+        $(".friendWeixin .user-content").html(falseComments[commentRand2]);
+        $(".friendWeixin .user-nickname").html(falseDatas.friend[weixinRand].nickname);
+        $(".friendWeixin .favUser").html( createFav( getArrayItems(falseDatas.star,3).concat(getArrayItems(falseDatas.friend,5)) ));
+        $(".friendWeixin .commentWrap > ul").html( createContent(getArrayItems(falseDatas.star,5).concat(getArrayItems(falseDatas.friend,10))));
+
+        $.ajax({
+           type: "POST",
+           url: 'api/user.php?act=info',
+           data:{
+            uid: UID
+           },
+           dataType: "json",
+           success: function(data){
+             if(data.code === 1){
+                 if(data.praise){
+                     $.each(data.praise,function(i,n){
+                         $(".myself .favUser").append(',<a href="javascript:;">'+ n.nickname +'</a>');
+                     });
+                 }
+                 if(data.comment){
+                    $.each(data.comment,function(i,n){
+                         $(".myself .commentWrap > ul").append('<li><span><a href="javascript:;">'+ n.nickname+'</a>:</span><span>'+ n.content+'</span></li>');
+                     });
+                 }
+                 $(".myself .txt_gray").html(getMHDM(data.user.date));
+                 $(".myself .user-headimgurl").attr("src",data.user.headimgurl);
+                 $(".myself .user-nickname").html(data.user.nickname);
+                 $(".myself .user-picurl").attr("src", data.user.picurl);
+                 $(".myself .user-content").html(data.user.content.replace(/[\r\n]/g,"<br/>"));
+             }else{
+                alert(data.msg);
+             }
+           }
+        });
+    });
+</script>
+</body>
+</html>

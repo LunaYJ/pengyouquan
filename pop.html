@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>朋友圈</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="js/crop/jquery-2.1.0.min.js"></script>
+    <script src="js/crop/sonic.js"></script>
+    <script src="js/crop/comm.js"></script>
+    <script src="js/crop/hammer.js"></script>
+    <script src="js/crop/iscroll-zoom.js"></script>
+    <script src="js/crop/jquery.photoClip.js?v=1"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/app.js"></script>
+    <style>
+        .main {
+            background: url("images/bg.jpg") repeat-y scroll 0 0 transparent;
+            background-size: cover;
+        }
+        .detail {
+            border-bottom: 1px dashed #727272;
+        }
+        #clipArea{
+            position: fixed;
+            background-color: rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+            z-index: 10000001;
+        }
+        #clipBtn{
+            background-color: #d95d99;
+            border: 0 none;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1rem;
+            width: 10.53rem;
+            height: 2rem;
+            position: fixed;
+            bottom: 10%;
+            left: 50%;
+            margin-left: -5.25rem;
+            display: none;
+            z-index: 100000001;
+        }
+        .uploadButton{
+            position: relative;
+            display: inline-block;
+        }
+        .uploadButton input{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        .btns {
+           margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <!--加载资源-->
+    <div class="lazy_tip" id="lazy_tip">
+        <span>1%</span><br>
+        加载是很重要的......
+    </div>
+    <div class="lazy_cover"></div>
+    <div class="resource_lazy hide"></div>
+
+    <div class="detail">
+        <div class="popularize">
+            <a href="javascript:;" class="">推广 <i class="icon downIcn"></i></a>
+        </div>
+        <div class="clearfix">
+            <div class="fl userAvatar">
+                <img id="headimgurl" alt=""/>
+            </div>
+            <div class="fl inn">
+                <h2><a href="javascript:;" id="nickname">silly.@</a></h2>
+                <div class="Fn">
+                    <textarea class="yourTxt">输入您的底气文案</textarea>
+                    <div class="uploadImg type2">
+                        <button class="clearBtn">清除</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="uploadImg" >
+            <!-- <div class="zoomBtn">
+                <a href="javascript:;"><i class="icon zoomIn"></i></a>
+                <br/>
+                <br/>
+                <a href="javascript:;"><i class="icon zoomOut"></i></a>
+            </div> -->
+            <img class="upload2" src="images/uploadDiv.png" alt=""/>
+            <p class="uploadNote">（点此按钮需要点底气）</p>
+            <!--<br/>-->
+            <div class="btns">
+                <div class="uploadButton">
+                    <button>上传图片</button>
+                    <input id="file" type="file" name="file" accept="image/*" />
+                </div>
+                <div class="uploadButton">
+                    <button id="submitBtn">发布</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="clipArea"></div>
+    <button id="clipBtn">确认</button>
+<script>
+var hammer = '';
+var currentIndex = 0;
+var body_width = $('body').width();
+var body_height = $('body').height();
+//图片上传
+function saveImageInfo() {
+    var filename = $('#hit').attr('fileName');
+    var img_data = $('#hit').attr('src');
+}
+/*获取文件拓展名*/
+function getFileExt(str) {
+    var d = /\.[^\.]+$/.exec(str);
+    return d;
+}
+//图片上传结束
+$(function () {
+    $('.clearBtn').on('touchstart', function(){
+        $('.yourTxt').val("");
+    })
+    $(".yourTxt").val(falseComments[commentRand1].replace(/<br\/>/g,"\n"));
+    $("#headimgurl").attr("src", headimgurl);
+    $("#nickname").html( nickname);
+    var imgBase64;
+    var imgUpload = false;
+    var img = new Image();
+    img.onload = img.onerror = function(){
+        $("#clipArea").photoClip({
+            width: $("img.upload2").width(),
+            height: $("img.upload2").height(),
+            file: "#file",
+            view: "img.upload2",
+            ok: "#clipBtn",
+            loadStart: function () {
+                //console.log("照片读取中");
+                // $('.lazy_tip span').text('');
+                // $('.lazy_cover,.lazy_tip').show();
+            },
+            loadComplete: function () {
+                //console.log("照片读取完成");
+                //$('.lazy_cover,.lazy_tip').hide();
+            },
+            clipFinish: function (dataURL) {
+                imgBase64 = dataURL;
+                imgUpload = true;
+                $("img.upload2").attr('src', dataURL);
+                $("#clipBtn").fadeOut();
+                $("#clipArea").fadeOut();
+                //saveImageInfo();
+            }
+        });
+    };
+    img.src = 'images/uploadDiv.png';
+    $("#file").on('change',function(){
+        $("#clipBtn").fadeIn();
+        $("#clipArea").fadeIn();
+    });
+    $('.uploadButton').on('touchstart', function () {
+        //$('#file').trigger('click');
+    });
+
+
+    $("#submitBtn").on('touchstart',function(){
+        if(!imgUpload){
+            alert("请上传图片！");
+            return;
+        }
+        if($(".yourTxt").val() === ""){
+            alert("请上输入内容！");
+            return;
+        }
+        $.ajax({
+           type: "POST",
+           url: 'api/user.php?act=form',
+           data:{
+            content: $(".yourTxt").val(),
+            picurl: imgBase64
+           },
+           dataType: "json",
+           success: function(data){
+             if(data.code === 1){
+                window.location.href = "result.html?uid=" + data.uid;
+             }else{
+                alert(data.msg);
+             }
+           }
+        });
+    });
+});
+
+</script>
+
+    <div class="detail">
+        <div class="layers"></div>
+        <div class="clearfix">
+            <div class="fl userAvatar">
+                <img src="images/sampleAvatar.png" alt=""/>
+            </div>
+            <div class="fl inn">
+                <h2><a href="javascript:;">妙巴黎BOURJOIS</a></h2>
+                <p>
+                    一个无冕之王
+                    <br/>
+                    一个天生骄傲
+                    <br/>
+                    一个足够有料
+                    <br/>
+                    朋友圈打广告，底气十足才敢造
+                    <br/>
+                    <a href="javascript:;">查看详情 <i class="icon linkIcn"></i> </a>
+                    <br/>
+                    <img src="images/samplePic2.jpg" alt="" class="innImg" />
+
+                    <span class="noteA"><img src="images/AIcn.png" alt="" class=""/> 文案</span>
+                    <span class="noteB"><img src="images/BIcn.png" alt="" class=""/> 图片</span>
+                </p>
+                <div class="clearfix">
+                    <div class="fl">
+                        <span class="txt_gray">17分钟前</span>
+                    </div>
+                    <div class="fr Fn">
+                        <a href="javascript:;" class="fnShowBtn"><i class="icon FnIcon"></i></a>
+                        <span class="FnBtn">
+                            <a href="javascript:;"><i class="icon zanIcn"></i> 赞</a>|<a href="javascript:;"><i class="icon pinglunIcn"></i> 评论</a>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

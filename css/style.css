@@ -1,0 +1,393 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: #000;
+    text-decoration: none;
+    list-style: none;
+}
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+    overflow: hidden;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.txt_gray {
+    color: #6d6d6d;
+}
+html {
+    font-size: 62.5%;
+    font-family: 微软雅黑;
+}
+body {
+    background-color: #fff;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.icon {
+    display: inline-block;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-attachment: scroll;
+    background-size: contain;
+    vertical-align: baseline;
+}
+.icon.downIcn {
+    background-image: url("../images/downIcon.png");
+    width: 6px;
+    height: 3px;
+    vertical-align: middle;
+}
+.icon.favIcn {
+    background-image: url("../images/favIcon.png");
+    width: 0.9rem;
+    height: 0.8rem;
+}
+.icon.FnIcon {
+    background-image: url("../images/FnIcon.png");
+    width: 1.7rem;
+    height: 0.96rem;
+}
+.icon.linkIcn {
+    background-image: url("../images/linkIcon.png");
+    width: 0.9rem;
+    height: .8rem;
+}
+.icon.moreIcn {
+    background-image: url("../images/moreIcon.png");
+    width: 1.6rem;
+    height: .8rem;
+    vertical-align: middle;
+}
+.icon.pinglunIcn {
+    background-image: url("../images/pinglunIcon3.png");
+    width: 12px;
+    height: 12px;
+    vertical-align: text-bottom;
+}
+.icon.zanIcn {
+    background-image: url("../images/zanIcon.png");
+    width: 12px;
+    height: 12px;
+    vertical-align: text-bottom;
+}
+.icon.zoomIn {
+    background-image: url("../images/zoomIn.png");
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.icon.zoomOut {
+    background-image: url("../images/zoomOut.png");
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+.main {
+    padding: 27px 0;
+    position: absolute;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    z-index: 10;
+}
+.detail {
+    position: relative;
+    border-bottom: 1px solid #b3b3b3;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.userAvatar {
+    /*width: 54px;*/
+    width: 12%;
+}
+.inn {
+    width: 80%;
+    margin-left: 10px;
+}
+h2 {
+    margin-bottom: 5px;
+}
+h2 a {
+    color: #53679c;
+    font-size: 1.2rem;
+}
+.inn p {
+    font-size: 1.1rem;
+    line-height: 2rem;
+    position: relative;
+}
+.inn p a {
+    font-size: 0.9rem;
+    color: #53679c;
+}
+.inn span {
+    font-size: 0.8rem;
+}
+.inn div {
+    font-size: 1.1rem;
+    line-height: 1.3rem;
+    position: relative;
+}
+.inn div a {
+    font-size: 0.9rem;
+    /*color: #53679c;*/
+}
+.commentList {
+    position: relative;
+    background: #f4f4f6;
+    margin-top: 10px;
+}
+.commentWrap {
+    border-top: 1px solid #cacacb;
+}
+.emoji {
+    width: 16px;
+    height: auto;
+    vertical-align: text-bottom;
+}
+.favList {
+    padding: 5px;
+}
+.favList div {
+    display: inline-block;
+    vertical-align: top;
+}
+.favList div, .favList div a {
+    color: #53679c;
+    font-size: 1rem;
+}
+.favUser {
+    width: 93%;
+    text-align: justify;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.commentWrap {
+    padding: 5px;
+}
+.inn div.commentWrap a {
+    color: #53679c;
+    font-size: 1.1rem;
+}
+.commentWrap span {
+    font-size: 1.1rem;
+}
+.commentWrap li {
+    /*padding: 5px 0;*/
+    margin-bottom: 5px;
+}
+.commentList em {
+    position: absolute;
+    top: -10px;
+    left: 5%;
+    width: 19px;
+    height: 19px;
+    color: #f4f4f6;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+.Fn {
+    position: relative;
+}
+.inn .FnBtn {
+    background: rgb(77,80,85);
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 100%;
+    width: 150px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    z-index: 10;
+    font-size: 1.1rem;
+    display: none;
+}
+.FnBtn a {
+    display: inline-block;
+    text-align: center;
+    color: #fff!important;
+    font-size: 1.1rem!important;
+    width: 45%;
+    line-height: 3rem;
+}
+.popularize {
+    position: absolute;
+    top: 0;
+    right: 12px;
+}
+.popularize a {
+    display: block;
+    background: #f4f4f6;
+    padding: 5px;
+    text-align: center;
+    font-size: 1rem;
+    color: #8e8c8c;
+    margin-bottom: 10px;
+}
+.popularize a.rank {
+    color: #f3489d;
+    animation: flash 8s linear infinite alternate;
+}
+
+.yourTxt {
+    background: url("../images/TXT-border.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    resize: none;
+    width: 18rem;
+    height: 5.4rem;
+    background-size: contain;
+    line-height: 1.8rem;
+    font-size: 1.4rem;
+    font-family: '微软雅黑', Arial, sans-serif;
+}
+.uploadImg {
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+}
+.uploadImg img {
+    width: 10.53rem;
+    height: auto;
+}
+.uploadImg button {
+    background-color: #d95d99;
+    border: 0 none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 1.3rem;
+    width: 7.53rem;
+    height: 2rem;
+}
+.inn .uploadNote {
+    font-size: 0.794rem;
+    color: #444242;
+}
+.innImg {
+    width: 104px;
+}
+.zoomBtn {
+    position: absolute;
+    right: 18%;
+    bottom: 30%;
+}
+.inn .noteA {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    font-size: 1.437rem;
+}
+.noteA img {
+    width: 10.7rem;
+    vertical-align: text-bottom;
+}
+.inn .noteB {
+    position: absolute;
+    right: 0;
+    bottom: 40%;
+    font-size: 1.437rem;
+}
+.noteB img {
+    width: 8.06rem;
+    vertical-align: text-bottom;
+}
+.layers {
+    top: -1rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    position: absolute;
+    z-index: 10;
+}
+.commentPop {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    background-color: #f4f4f6;
+    border-top: 1px solid #cacacb;
+    border-bottom: 1px solid #cacacb;
+    display: none;
+    z-index: 100;
+}
+.commentPop input {
+    width: 70%;
+    border: 1px solid #cacacb;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    line-height: 1.9rem;
+    padding: 0 5px;
+}
+.commentPop button {
+    width: 20%;
+    border: 1px solid #cacacb;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    line-height: 1.9rem;
+}
+.commentPop button:active {
+    background-color: #f4f4f6;
+}
+@media screen and (min-device-width: 375px){
+    .userAvatar {
+        width: 14.5%;
+    }
+    html {
+        font-size: 93.75%;
+    }
+    .innImg {
+        width: 157px;
+    }
+    .zoomBtn {
+        right: 10%;
+    }
+    .noteA img {
+        width: 8rem;
+    }
+    .noteB img {
+        width: 5rem;
+    }
+}
+
+.tadaAn { 
+    -webkit-animation: tada 2s linear infinite alternate;
+}
+
+/* 12/28 */
+.uploadImg.type2{
+    position: absolute;
+    bottom: .8rem;
+    right: 0;
+}
+.uploadImg.type2 button {
+    width: 3rem;
+    height: 1.4rem;
+    font-size: .9rem;
+    line-height: 1.4rem;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-weight: normal;
+}
